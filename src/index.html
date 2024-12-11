@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <title>Formulario Maestro Detalle</title>
 </head>
@@ -12,18 +13,18 @@
 
     <maestro>
         <div style="padding: 5px;"></div>
-        <h2>MAESTRO</h2>
-        <button id="boton_refresca">Refrescar</button>
-        <button id="boton_nuevo">Nuevo</button>
+        <h2 class="Roboto">MAESTRO</h2>
+        <button id="boton_refresca" class="btn btn-light">Refrescar</button>
+        <button id="boton_nuevo" class="btn btn-primary">Nuevo</button>
     </maestro>
     <div >
-        <table>
+        <table class="table">
 
-            <thead>
+            <thead class="thead-dark container">
                 <Id hidden>ID</Id>
-                <th>Nombre</th>
-                <th>Apellido</th>
-               <th>Acción</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Acción</th>
              </thead>
              <tbody id="listado">
 
@@ -41,8 +42,8 @@
                 <br>
                 <label for="apellido">Apellido:</label>
                 <input type="text" id="apellido" name="apellido">
-                <button id="boton_graba">Grabar</button>
-                <button id="boton_cancela">Cancelar</button>
+                <button id="boton_graba" class="btn btn-success">Grabar</button>
+                <button id="boton_cancela" class="btn btn-warning">Cancelar</button>
 
             </form>
         </detalle>

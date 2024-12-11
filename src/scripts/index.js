@@ -16,7 +16,7 @@ $(document).ready(function () {
                     $linea.append($('<td class="renglon" style=display:none>').text(x.id));
                     $linea.append($('<td class="renglon">').text(x.nombre));
                     $linea.append($('<td class="renglon">').text(x.apellido));
-                    $linea.append($('<button id="boton_borra"></button>').text("Borrar"));
+                    $linea.append($('<button id="boton_borra" class="btn btn-danger"></button>').text("Borrar"));
                     $padre.append($linea);
                 });
 
