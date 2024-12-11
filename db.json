@@ -1,0 +1,14 @@
+{
+    "solicitudes": [
+      {
+        "id": 1,
+        "nombre": "Fernando",
+        "apellido": "Alguno"
+      },
+      {
+        "id": 2,
+        "nombre": "Nico",
+        "apellido": "Otro"
+      }
+    ]
+  }

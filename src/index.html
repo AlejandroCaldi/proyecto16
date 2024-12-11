@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
     <title>Formulario Maestro Detalle</title>
 </head>
 
@@ -12,15 +13,31 @@
     <maestro>
         <div style="padding: 5px;"></div>
         <h1>MAESTRO</h1>
-        <button id="boton_refresca"" >Refrescar</button>
-    <button id=" boton_nuevo">Nuevo</button>
+        <button id="boton_refresca">Refrescar</button>
+        <button id="boton_nuevo">Nuevo</button>
     </maestro>
-    <detalle>
+    <div >
+        <table>
+
+            <thead>
+                <th>Nombre</th>
+                <th>Apellido</th>
+               <th>Acción</th>
+             </thead>
+             <tbody id="detalle">
 
 
 
+             </tbody>
 
-    </detalle>
+
+        </table>
+
+
+
+    </div>
+
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>
