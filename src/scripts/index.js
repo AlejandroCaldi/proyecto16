@@ -104,9 +104,9 @@ $(document).ready(function () {
 
     });
 
-    // Botón para agregado de nuevo registro
+    // Botón para agregado de nuevo registro.
     $('#boton_nuevo').on("click", function (event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
         operacion = 1 // 1 significa crear registro. 
         mostrarOcultarDetalle();
         $("#id").val("");
@@ -114,8 +114,9 @@ $(document).ready(function () {
         $("#apellido").val("");
     });
 
+    // Botón de cancelado de grabación o modificación. 
     $('#boton_cancela').on("click", function (event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault();
         $("#id").val("");
         $("#nombre").val("");
         $("#apellido").val("");
