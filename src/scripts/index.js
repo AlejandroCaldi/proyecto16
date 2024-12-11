@@ -13,10 +13,10 @@ $(document).ready(function () {
                 result.forEach(x => {
                     console.log("Processing item:", x);
                     let $linea = $('<tr>');
-                    $linea.append($('<td class="renglon" style=display:none>').text(x.id));
-                    $linea.append($('<td class="renglon">').text(x.nombre));
-                    $linea.append($('<td class="renglon">').text(x.apellido));
-                    $linea.append($('<button id="boton_borra" class="btn btn-danger"></button>').text("Borrar"));
+                    $linea.append($('<td class="renglon mt-3 md-3" style=display:none>').text(x.id));
+                    $linea.append($('<td class="renglon mt-3 md-3">').text(x.nombre));
+                    $linea.append($('<td class="renglon mt-3md-3">').text(x.apellido));
+                    $linea.append($('<button id="boton_borra" class="btn btn-danger mt-3 md-3"></button>').text("Borrar"));
                     $padre.append($linea);
                 });
 
@@ -88,14 +88,14 @@ $(document).ready(function () {
                 
                 console.log('Respuesta: ' + result)
                 let $padre = $('<respuesta></respuesta')
-                let $parrafo = $('<p></p>').text("Respuesta del Servidor tras DELETE: " + JSON.stringify(result) + ". Para solID: " + solId);
+                let $parrafo = $('<p class="Roboto"></p>').text("Respuesta del Servidor tras DELETE: " + JSON.stringify(result) + ". Para solID: " + solId);
                 $padre.append($parrafo);
     
                 $('body').append($padre);
             },
             error: function(xhr, status, error) { 
-                let $parrafo0 = $('<p></p>').text("Respuesta del Servidor");
-                let $parrafo = $('<p></p>').text('Error: ' + error);
+                let $parrafo0 = $('<p class="Roboto></p>').text("Respuesta del Servidor");
+                let $parrafo = $('<p class="Roboto></p>').text('Error: ' + error);
             } 
         });
 
@@ -152,7 +152,7 @@ $(document).ready(function () {
                     success: function (result) {
                         console.log('Respuesta: ' + result);
                         let $padre = $('logUsuario');
-                        let $linea = $('<p></p>').text("Modificación con PUT: " + JSON.stringify(result));
+                        let $linea = $('<p class="Roboto></p>').text("Modificación con PUT: " + JSON.stringify(result));
                         $padre.append($linea);
 
                         console.log("Actualización existosa")
@@ -189,7 +189,7 @@ $(document).ready(function () {
                         success: function (result) {
                             console.log('Respuesta: ' + result);
                             let $padre = $('logUsuario');
-                            let $linea = $('<p></p>').text("Registro creado con POST: " + JSON.stringify(result));
+                            let $linea = $('<p class="Roboto></p>').text("Registro creado con POST: " + JSON.stringify(result));
                             $padre.append($linea);
 
                             console.log("Creación existosa")
@@ -207,7 +207,7 @@ $(document).ready(function () {
         } else {
 
             let $padre = $('logUsuario');
-            let $linea = $('<p></p>').text("POST no Creado: ni Nombre ni Apellido pueden ser vacíos.");
+            let $linea = $('<p class="Roboto></p>').text("POST no Creado: ni Nombre ni Apellido pueden ser vacíos.");
             $padre.append($linea);
         }
 

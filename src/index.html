@@ -17,44 +17,46 @@
         <button id="boton_refresca" class="btn btn-light">Refrescar</button>
         <button id="boton_nuevo" class="btn btn-primary">Nuevo</button>
     </maestro>
-    <div >
-        <table class="table">
 
-            <thead class="thead-dark container">
-                <Id hidden>ID</Id>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Acción</th>
-             </thead>
-             <tbody id="listado">
+    <table class="table">
 
-                <!-- Acá va el refrescado...-->
-             </tbody>
-        </table>
+        <thead class="thead-dark container">
 
-        <detalle style="display:none">
-            <h2>Detalle</h2>
-            <form class="detalle">
+            <Id hidden>ID</Id>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Acción</th>
+
+        </thead>
+        <tbody id="listado">
+
+            <!-- Acá va el refrescado...-->
+        </tbody>
+    </table>
+
+    <detalle style="display:none">
+        <h2>Detalle</h2>
+        <form class="detalle">
             <input type="hidden" id="id" name="id">
-                <input type="hidden" id="id" name="id">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre">
-                <br>
-                <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido">
-                <button id="boton_graba" class="btn btn-success">Grabar</button>
-                <button id="boton_cancela" class="btn btn-warning">Cancelar</button>
+            <input type="hidden" id="id" name="id">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+            <br>
+            <label for="apellido" class="Roboto">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" classa="Roboto">
+            <button id="boton_graba" class="btn btn-success">Grabar</button>
+            <button id="boton_cancela" class="btn btn-warning">Cancelar</button>
 
-            </form>
-        </detalle>
+        </form>
+    </detalle>
 
-        <logUsuario>
+    <logUsuario>
 
-            <h2 >Log de usuario</h2>
+        <h2>Log de usuario</h2>
 
-            <!-- A llenar con log de operaciones-->
-             
-        </logUsuario>
+        <!-- A llenar con log de operaciones-->
+
+    </logUsuario>
 
     </div>
 
