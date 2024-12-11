@@ -16,7 +16,7 @@ $(document).ready(function () {
                     $linea.append($('<td class="renglon" style=display:none>').text(x.id));
                     $linea.append($('<td class="renglon">').text(x.nombre));
                     $linea.append($('<td class="renglon">').text(x.apellido));
-                    $linea.append($('<button></button>').text("Borrar"));
+                    $linea.append($('<button id="boton_borra"></button>').text("Borrar"));
                     $padre.append($linea);
                 });
 
@@ -48,30 +48,63 @@ $(document).ready(function () {
 
         refrescarListado();
 
-        // clickea en un renglón cualquiera donde hay datos del maestro. 
-        $('#listado').on("click", "td", function (event) {
+    });
 
-            event.preventDefault()
+    // clickea en un renglón cualquiera donde hay datos del maestro. 
+    $('#listado').on("click", "td", function (event) {
 
-            let $row = $(this).closest('tr');
-            let solId = $row.find('td').eq(0).text();
-            let solNombre = $row.find('td').eq(1).text();
-            let solApellido = $row.find('td').eq(2).text();
+        event.preventDefault()
+
+        let $row = $(this).closest('tr');
+        let solId = $row.find('td').eq(0).text();
+        let solNombre = $row.find('td').eq(1).text();
+        let solApellido = $row.find('td').eq(2).text();
 
 
-            $("#id").val(solId);
-            $("#nombre").val(solNombre);
-            $("#apellido").val(solApellido);
+        $("#id").val(solId);
+        $("#nombre").val(solNombre);
+        $("#apellido").val(solApellido);
 
-            operacion = 0; // 0 es modificación. 
+        operacion = 0; // 0 es modificación. 
 
-            mostrarOcultarDetalle();
-        
-            
-        });
+        mostrarOcultarDetalle();
+
 
     });
-       
+
+
+    // botón para borrado de registro. 
+    $('#listado').on("click", "#boton_borra", function (event) {
+
+        event.preventDefault()
+
+        let $row = $(this).closest('tr');
+        let solId = $row.find('td').eq(0).text();
+
+        $.ajax({url: 'https://my-json-server.typicode.com/desarrollo-seguro/dato/solicitudes/' + solId,
+            method: "DELETE",
+            contentType: "application/json",
+            success: function(result){
+                
+                console.log('Respuesta: ' + result)
+                let $padre = $('<respuesta></respuesta')
+                let $parrafo = $('<p></p>').text("Respuesta del Servidor tras DELETE: " + JSON.stringify(result) + ". Para solID: " + solId);
+                $padre.append($parrafo);
+    
+                $('body').append($padre);
+            },
+            error: function(xhr, status, error) { 
+                let $parrafo0 = $('<p></p>').text("Respuesta del Servidor");
+                let $parrafo = $('<p></p>').text('Error: ' + error);
+            } 
+        });
+
+        refrescarListado();
+
+
+    });
+
+    // Botón para agregado de nuevo registro
     $('#boton_nuevo').on("click", function (event) {
         event.preventDefault(); // Prevent form submission
         operacion = 1 // 1 significa crear registro. 
@@ -92,79 +125,90 @@ $(document).ready(function () {
     });
 
     $("#boton_graba").on('click', function (event) {
-        
+
+        let valId = $("#id").val();
+        let valNombre = $("#nombre").val();
+        let valApellido = $("#apellido").val();
+
         event.preventDefault();
 
-        if (operacion == 0) {
+        if (valNombre != "" && valApellido != "") {
 
+            if (operacion == 0) {
 
-            let valId = $("#id").val();
-            let valNombre = $("#nombre").val();
-            let valApellido = $("#apellido").val();
-            
-            let envio = {
-                "id": valId,
-                "nombre": valNombre,
-                "apellido": valApellido
-            };
+                let envio = {
+                    "id": valId,
+                    "nombre": valNombre,
+                    "apellido": valApellido
+                };
 
-            console.log("Envio Object:", envio);
+                console.log("Envio Object:", envio);
 
-            $.ajax({
-                url: 'https://my-json-server.typicode.com/desarrollo-seguro/dato/solicitudes/' + envio.id,
-                data: JSON.stringify(envio),
-                method: "PUT",
-                contentType: "application/json",
-                success: function (result) {
-                    console.log('Respuesta: ' + result);
-                    let $padre = $('logUsuario');
-                    let $linea = $('<p></p>').text("Modificación con PUT: "  + JSON.stringify(result));
-                    $padre.append($linea);
+                $.ajax({
+                    url: 'https://my-json-server.typicode.com/desarrollo-seguro/dato/solicitudes/' + envio.id,
+                    data: JSON.stringify(envio),
+                    method: "PUT",
+                    contentType: "application/json",
+                    success: function (result) {
+                        console.log('Respuesta: ' + result);
+                        let $padre = $('logUsuario');
+                        let $linea = $('<p></p>').text("Modificación con PUT: " + JSON.stringify(result));
+                        $padre.append($linea);
 
-                    console.log("Actualización existosa")
+                        console.log("Actualización existosa")
 
-                    mostrarOcultarDetalle();
+                        mostrarOcultarDetalle();
 
-                },
-                error: function (error) {
-                    console.log('Error: ' + error);
+                    },
+                    error: function (error) {
+                        console.log('Error: ' + error);
+                    }
+                });
+
+            }
+
+            if (operacion == 1) {
+
+                id = 0
+
+                {
+
+                    let envio = {
+                        "id": 0,
+                        "nombre": valNombre,
+                        "apellido": valApellido
+                    };
+
+                    console.log("Envio Object:", envio);
+
+                    $.ajax({
+                        url: 'https://my-json-server.typicode.com/desarrollo-seguro/dato/solicitudes/',
+                        data: JSON.stringify(envio),
+                        method: "POST",
+                        contentType: "application/json",
+                        success: function (result) {
+                            console.log('Respuesta: ' + result);
+                            let $padre = $('logUsuario');
+                            let $linea = $('<p></p>').text("Registro creado con POST: " + JSON.stringify(result));
+                            $padre.append($linea);
+
+                            console.log("Creación existosa")
+
+                            mostrarOcultarDetalle();
+
+                        },
+                        error: function (error) {
+                            console.log('Error: ' + error);
+                        }
+                    });
                 }
-            });
+            }
 
-        } 
+        } else {
 
-        if (operacion == 1) {
-
-            id = 0
-
-            let envio = {
-                "id": id,
-                "nombre": nombre,
-                "apellido": apellido
-            };
-
-            console.log("Envio Object:", envio);
-
-            $.ajax({
-                url: 'https://my-json-server.typicode.com/desarrollo-seguro/dato/solicitudes/',
-                data: JSON.stringify(envio),
-                method: "POST",
-                contentType: "application/json",
-                success: function (result) {
-                    console.log('Respuesta: ' + result);
-                    let $padre = $('logUsuario');
-                    let $linea = $('<p></p>').text("Registro creado con POST: "  + JSON.stringify(result));
-                    $padre.append($linea);
-
-                    console.log("Creación existosa")
-
-                    mostrarOcultarDetalle();
-
-                },
-                error: function (error) {
-                    console.log('Error: ' + error);
-                }
-            });
+            let $padre = $('logUsuario');
+            let $linea = $('<p></p>').text("POST no Creado: ni Nombre ni Apellido pueden ser vacíos.");
+            $padre.append($linea);
         }
 
     });
