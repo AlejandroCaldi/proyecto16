@@ -12,7 +12,7 @@
 
     <maestro>
         <div style="padding: 5px;"></div>
-        <h1>MAESTRO</h1>
+        <h2>MAESTRO</h2>
         <button id="boton_refresca">Refrescar</button>
         <button id="boton_nuevo">Nuevo</button>
     </maestro>
@@ -20,18 +20,32 @@
         <table>
 
             <thead>
+                <Id hidden>ID</Id>
                 <th>Nombre</th>
                 <th>Apellido</th>
                <th>Acción</th>
              </thead>
-             <tbody id="detalle">
+             <tbody id="listado">
 
-
-
+                <!-- Acá va el refrescado...-->
              </tbody>
-
-
         </table>
+
+        <detalle style="display:none">
+            <h2>Detalle</h2>
+            <form class="detalle">
+            <input type="hidden" id="id" name="id">
+                <input type="hidden" id="id" name="id">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre">
+                <br>
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido">
+                <button id="boton_graba">Grabar</button>
+                <button id="boton_cancela">Cancelar</button>
+
+            </form>
+        </detalle>
 
 
 
