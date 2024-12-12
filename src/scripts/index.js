@@ -1,6 +1,11 @@
 $(document).ready(function () {
 
+    // Varaible para disernir si la operación es de modificación o creación de registro. 
+    // 0 es modificación
+    // 1 es creación.
     let operacion = null;
+
+
     // función para actualizar la tabla de maestro. 
     function refrescarListado() {
 
@@ -214,7 +219,5 @@ $(document).ready(function () {
         }
 
     });
-
-
 
 });
