@@ -77,7 +77,7 @@ $(document).ready(function () {
     // botón para borrado de registro. 
     $('#listado').on("click", "#boton_borra", function (event) {
 
-        event.preventDefault()
+        event.preventDefault() // Esto o si no, al menos en Brave, cuelga por razòn no informada en inspector y debugguer. 
 
         let $row = $(this).closest('tr');
         let solId = $row.find('td').eq(0).text();
