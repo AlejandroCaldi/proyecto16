@@ -29,6 +29,7 @@ $(document).ready(function () {
 
     };
 
+    // Funciòn para cambiar estado de display en la tag de detalle. 
     function mostrarOcultarDetalle() {
         let $detalle = $("detalle");
         if ($detalle.is(':visible')) {
